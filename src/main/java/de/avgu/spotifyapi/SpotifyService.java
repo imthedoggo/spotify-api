@@ -1,5 +1,7 @@
 package de.avgu.spotifyapi;
 
+import de.avgu.spotifyapi.dto.Artist;
+import de.avgu.spotifyapi.dto.Track;
 import java.util.Collections;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
@@ -62,6 +64,16 @@ public class SpotifyService {
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<Artist> response = restTemplate.exchange(
             uriBuilder.toUriString(), HttpMethod.GET, getHeader(), Artist.class);
+
+        return response.getBody();
+    }
+
+    public Track getTrack(String id) {
+        UriComponentsBuilder uriBuilder = UriComponentsBuilder.fromHttpUrl(apiUrl +"/tracks/" + id);
+
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<Track> response = restTemplate.exchange(
+            uriBuilder.toUriString(), HttpMethod.GET, getHeader(), Track.class);
 
         return response.getBody();
     }

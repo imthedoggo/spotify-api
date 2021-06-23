@@ -1,5 +1,7 @@
 package de.avgu.spotifyapi;
 
+import de.avgu.spotifyapi.dto.Artist;
+import de.avgu.spotifyapi.dto.Track;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,5 +34,12 @@ public class SpotifyController {
         @PathVariable String id
     ) {
         return spotifyService.getArtist(id);
+    }
+
+    @GetMapping("/tracks/{id}")
+    public Track getTrack(
+        @PathVariable String id
+    ) {
+        return spotifyService.getTrack(id);
     }
 }
